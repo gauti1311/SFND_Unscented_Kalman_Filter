@@ -2,7 +2,7 @@
 // Create simple 3d highway enviroment using PCL
 // for exploring self-driving car sensors
 
-//#include "render/render.h"
+// #include "render/render.h"
 #include "highway.h"
 
 int main(int argc, char** argv)
@@ -29,6 +29,7 @@ int main(int argc, char** argv)
 
 	while (frame_count < (frame_per_sec*sec_interval))
 	{
+		std::cout << " ukf started " << std::endl;
 		viewer->removeAllPointClouds();
 		viewer->removeAllShapes();
 

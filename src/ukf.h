@@ -51,50 +51,61 @@ class UKF {
   // if this is false, radar measurements will be ignored (except for init)
   bool use_radar_;
 
-  // state vector: [pos1 pos2 vel_abs yaw_angle yaw_rate] in SI units and rad
-  Eigen::VectorXd x_;
+    // state vector: [pos1 pos2 vel_abs yaw_angle yaw_rate] in SI units and rad
+    Eigen::VectorXd x_;
 
-  // state covariance matrix
-  Eigen::MatrixXd P_;
+    // state covariance matrix
+    Eigen::MatrixXd P_;
 
-  // predicted sigma points matrix
-  Eigen::MatrixXd Xsig_pred_;
+    // predicted sigma points matrix
+    Eigen::MatrixXd Xsig_pred_;
 
-  // time when the state is true, in us
-  long long time_us_;
+    // measurement noise covariance matrix
+    Eigen::MatrixXd R_lidar_;
+    Eigen::MatrixXd R_radar_;
 
-  // Process noise standard deviation longitudinal acceleration in m/s^2
-  double std_a_;
+    // Weights of sigma points
+    Eigen::VectorXd weights_;
 
-  // Process noise standard deviation yaw acceleration in rad/s^2
-  double std_yawdd_;
+    // time when the state is true, in us
+    long long time_us_;
 
-  // Laser measurement noise standard deviation position1 in m
-  double std_laspx_;
+    // Process noise standard deviation longitudinal acceleration in m/s^2
+    double std_a_;
 
-  // Laser measurement noise standard deviation position2 in m
-  double std_laspy_;
+    // Process noise standard deviation yaw acceleration in rad/s^2
+    double std_yawdd_;
 
-  // Radar measurement noise standard deviation radius in m
-  double std_radr_;
+    // Laser measurement noise standard deviation position1 in m
+    double std_laspx_;
 
-  // Radar measurement noise standard deviation angle in rad
-  double std_radphi_;
+    // Laser measurement noise standard deviation position2 in m
+    double std_laspy_;
 
-  // Radar measurement noise standard deviation radius change in m/s
-  double std_radrd_ ;
+    // Radar measurement noise standard deviation radius in m
+    double std_radr_;
 
-  // Weights of sigma points
-  Eigen::VectorXd weights_;
+    // Radar measurement noise standard deviation angle in rad
+    double std_radphi_;
 
-  // State dimension
-  int n_x_;
+    // Radar measurement noise standard deviation radius change in m/s
+    double std_radrd_;
 
-  // Augmented state dimension
-  int n_aug_;
+    // State dimension
+    int n_x_;
 
-  // Sigma point spreading parameter
-  double lambda_;
+    // Augmented state dimension
+    int n_aug_;
+
+    // Sigma point spreading parameter
+    double lambda_;
+
+    // normalized innovation squared(NIS)
+
+    double nis_radar_;
+    double nis_lidar_;
+
+    bool debug;
 };
 
 #endif  // UKF_H

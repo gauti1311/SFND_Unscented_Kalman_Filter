@@ -20,7 +20,7 @@ public:
 	// Parameters 
 	// --------------------------------
 	// Set which cars to track with UKF
-	std::vector<bool> trackCars = {true,true,true};
+	std::vector<bool> trackCars = {true, true, true};
 	// Visualize sensor measurements
 	bool visualize_lidar = true;
 	bool visualize_radar = true;
@@ -34,9 +34,11 @@ public:
 	{
 
 		tools = Tools();
-	
+
 		egoCar = Car(Vect3(0, 0, 0), Vect3(4, 2, 2), Color(0, 1, 0), 0, 0, 2, "egoCar");
 		
+		std::cout << "debug " << std::endl;
+
 		Car car1(Vect3(-10, 4, 0), Vect3(4, 2, 2), Color(0, 0, 1), 5, 0, 2, "car1");
 		
 		std::vector<accuation> car1_instructions;
@@ -48,6 +50,7 @@ public:
 		car1_instructions.push_back(a);
 		a = accuation(4.4*1e6, -2.0, 0.0);
 		car1_instructions.push_back(a);
+		std::cout << "debug " << std::endl;
 	
 		car1.setInstructions(car1_instructions);
 		if( trackCars[0] )
@@ -56,6 +59,7 @@ public:
 			car1.setUKF(ukf1);
 		}
 		traffic.push_back(car1);
+		
 		
 		Car car2(Vect3(25, -4, 0), Vect3(4, 2, 2), Color(0, 0, 1), -6, 0, 2, "car2");
 		std::vector<accuation> car2_instructions;
